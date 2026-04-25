@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nneka Udoye - Salesforce Certified Consultant & Administrator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00A1E0;          /* Salesforce Blue */
+            --secondary-color: #FFFFFF;        /* White */
+            --accent-color: #1798C1;           /* Light Salesforce Blue */
+            --dark-color: #032D60;             /* Dark Navy */
+            --light-color: #F4F6F9;            /* Light Gray */
+            --text-light: #666666;             /* Gray Text */
+            --white: #FFFFFF;
+            --gradient-primary: linear-gradient(135deg, #00A1E0 0%, #032D60 100%);
+            --gradient-secondary: linear-gradient(135deg, #1798C1 0%, #00A1E0 100%);
+            --shadow: 0 4px 20px rgba(0, 161, 224, 0.15);
+            --shadow-hover: 0 8px 30px rgba(0, 161, 224, 0.25);
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            overflow-x: hidden;
+            background: var(--light-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 140px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='rgba(255,255,255,0.05)' d='M0 50 L50 0 L100 50 L50 100 Z'/%3E%3C/svg%3E") repeat;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.85;
+            animation: fadeInUp 1s ease 0.4s both;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 14px 35px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        /* Quick Stats */
+        .quick-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-photo {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 5rem;
+            margin: 0 auto;
+            box-shadow: var(--shadow);
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--light-color);
+            border-radius: 10px;
+        }
+
+        .highlight-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        /* Certifications Section */
+        .certifications-section {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .cert-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .cert-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+
+        .cert-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .skill-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: var(--primary-color);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            max-width: 400px;
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 4px solid var(--light-color);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -59px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -59px;
+        }
+
+        .timeline-date {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+
+        .timeline-company {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .projects-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project-image {
+            height: 200px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-category {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .project-description {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background: var(--light-color);
+            color: var(--text-light);
+            padding: 0.4rem 1rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--dark-color);
+        }
+
+        /* Education Section */
+        .education {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .education-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .education-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-primary);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .education-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+
+        .education-info .school {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-info .date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-info .field {
+            color: var(--text-light);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: var(--dark-color);
+            color: var(--white);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info > p {
+            margin-bottom: 2rem;
+            opacity: 0.85;
+            line-height: 1.8;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            width: 25px;
+        }
+
+        .contact-item a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-color);
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--dark-color);
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: 2px solid var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: #021a35;
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-link {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-link:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 80px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+
+            .timeline-content::before,
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -50px;
+                right: auto;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .quick-stats {
+                gap: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid,
+            .skills-grid,
+            .cert-grid,
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero {
+                padding: 120px 0 60px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+            }
+
+            .about-photo {
+                width: 200px;
+                height: 200px;
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">
+                <i class="fas fa-cloud"></i>
+                Nneka Udoye
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Salesforce Certified Consultant & Administrator</h1>
+                <p class="hero-subtitle">AI • Data Cloud • Sales, Service & Field Service</p>
+                <p class="hero-description">
+                    Delivering scalable CRM solutions across Sales Cloud, Service Cloud, Field Service, Data Cloud, and AI-enabled Salesforce features. I help organizations optimize customer, service, and field operations through intelligent automation and strategic implementation.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-briefcase"></i> View My Work
+                    </a>
+                    <a href="#contact" class="btn btn-outline">
+                        <i class="fas fa-envelope"></i> Get In Touch
+                    </a>
+                </div>
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">8+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">6+</span>
+                        <span class="stat-label">Salesforce Certifications</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">User Adoption</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="about-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h2>About Me</h2>
+                    <p>
+                        I am a Salesforce Certified Consultant and Administrator with hands-on experience delivering scalable CRM solutions across Sales Cloud, Service Cloud, Field Service, Data Cloud, and AI-enabled Salesforce features.
+                    </p>
+                    <p>
+                        I specialize in helping organizations optimize customer, service, and field operations by automating workflows, improving data integrity, and connecting teams through a single source of truth. My experience spans both office-based users and mobile field teams, ensuring Salesforce solutions support real-world operational needs.
+                    </p>
+                    <p>
+                        With certifications across AI, Data Cloud, Sales Cloud, Service Cloud, Platform Administration, and App Builder, I bring a well-rounded understanding of the Salesforce ecosystem — from intelligent data strategy and analytics to hands-on configuration and automation.
+                    </p>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Sales Cloud Consultant</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Service Cloud Consultant</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Platform Administrator</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Data Cloud Expertise</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications-section">
+        <div class="container">
+            <h2 class="section-title">Salesforce Certifications</h2>
+            <p class="section-subtitle">Industry-recognized credentials demonstrating expertise</p>
+            
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="cert-info">
+                        <h3>Sales Cloud Consultant</h3>
+                        <p>Certified Sales Cloud implementation specialist</p>
+                    </div>
+                </div>
+                
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="cert-info">
+                        <h3>Service Cloud Consultant</h3>
+                        <p>Certified Service Cloud implementation expert</p>
+                    </div>
+                </div>
+                
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div class="cert-info">
+                        <h3>Salesforce Certified Associate</h3>
+                        <p>Foundational Salesforce certification</p>
+                    </div>
+                </div>
+                
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="cert-info">
+                        <h3>AI Specialist</h3>
+                        <p>Einstein AI and Salesforce AI expertise</p>
+                    </div>
+                </div>
+                
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="cert-info">
+                        <h3>Data Cloud Consultant</h3>
+                        <p>Salesforce Data Cloud implementation</p>
+                    </div>
+                </div>
+                
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="cert-info">
+                        <h3>Platform App Builder</h3>
+                        <p>Custom application development</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Core Expertise</h2>
+            <p class="section-subtitle">Technical skills and competencies</p>
+            
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="skill-title">Salesforce Administration & Security</h3>
+                    <p class="skill-description">
+                        User management, profiles, permission sets, role hierarchy, sharing rules, and field-level security configuration.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3 class="skill-title">Sales, Service & Field Service Cloud</h3>
+                    <p class="skill-description">
+                        Comprehensive implementation across Sales Cloud, Service Cloud, and Field Service Lightning for complete customer lifecycle management.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="skill-title">Salesforce Data Cloud & AI-Driven CRM</h3>
+                    <p class="skill-description">
+                        Data unification, segmentation, and AI-powered insights for intelligent customer engagement and data-driven decision making.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="skill-title">Declarative Automation (Flows)</h3>
+                    <p class="skill-description">
+                        Flow Builder, Record-Triggered Flows, Screen Flows, Schedule-Triggered Flows, and autolaunched flows for process automation.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <i class="fas fa-truck"></i>
+                    <h3 class="skill-title">Field Operations & Mobile Workforce</h3>
+                    <p class="skill-description">
+                        Work orders, service appointments, scheduling optimization, dispatcher console, and mobile app configuration for field teams.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3 class="skill-title">Reporting, Analytics & Adoption</h3>
+                    <p class="skill-description">
+                        Custom reports, dashboards, report types, and analytics for KPI tracking and user adoption enablement.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <p class="section-subtitle">Career journey in Salesforce implementation</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">May 2020 - Present</div>
+                        <h3 class="timeline-title">Salesforce Consultant</h3>
+                        <div class="timeline-company">MalOPlus Group Inc | Quebec, Canada</div>
+                        <p class="timeline-description">
+                            Work closely with the development team to provide designs and user enhancement to the current Salesforce application. Managed immigration from a legacy system into Salesforce CRM thereby eliminating duplication of records that afforded time management.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">May 2019 - April 2020</div>
+                        <h3 class="timeline-title">System Administrator</h3>
+                        <div class="timeline-company">IsAji Technology Corporation | Texas, United States</div>
+                        <p class="timeline-description">
+                            Create and manage Salesforce standard/custom objects and fields, Flows, and Salesforce Lightning development.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">September 2017 - July 2019</div>
+                        <h3 class="timeline-title">Salesforce Consultant</h3>
+                        <div class="timeline-company">Manifest & Company Inc. (Salesforce Consulting Partner) | California, United States</div>
+                        <p class="timeline-description">
+                            Implementation, Managed Services and oversight of clients' Salesforce Instances. Gathered and interpreted requirements to meet the need of clients. Built Salesforce apps to meet client requirements. Carried out Salesforce health checks. Achieved 100% user adoption via Training, Ongoing Support, and Project Involvement.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">February 2005 - February 2016</div>
+                        <h3 class="timeline-title">Customer Service Representative</h3>
+                        <div class="timeline-company">Airtel Nigeria | Lagos, Nigeria</div>
+                        <p class="timeline-description">
+                            11 years of customer service experience providing foundational skills in client relations and support.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">Salesforce implementations showcasing expertise</p>
+            
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="sales">Sales Cloud</button>
+                <button class="filter-btn" data-filter="service">Service Cloud</button>
+                <button class="filter-btn" data-filter="field">Field Service</button>
+                <button class="filter-btn" data-filter="automation">Automation</button>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card" data-category="sales automation">
+                    <div class="project-image">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">Sales Cloud & Automation</div>
+                        <h3 class="project-title">Sales Process Optimization</h3>
+                        <p class="project-description">
+                            Greenfield implementation of Salesforce Field Service Lightning with seamless Service Cloud and Sales Cloud integration. Utilized Flow Builder for frictionless automation across work orders, scheduling, and service appointments. Achieved 40% improvement in first-visit fix rates and streamlined dispatch operations through intelligent routing.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Field Service</span>
+                            <span class="tag">Service Cloud</span>
+                            <span class="tag">Sales Cloud</span>
+                            <span class="tag">Flow Builder</span>
+                            <span class="tag">Greenfield</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-eye"></i> View Details
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card" data-category="service">
+                    <div class="project-image">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">Service Cloud</div>
+                        <h3 class="project-title">Customer Support Platform</h3>
+                        <p class="project-description">
+                            End-to-end Salesforce Field Service implementation integrated with Service Cloud for unified case management. Configured Flow-based automation for work order creation, service appointments, and customer notifications. Reduced manual data entry by 65% and improved SLA compliance through automated entitlement and milestone tracking.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Field Service</span>
+                            <span class="tag">Service Cloud</span>
+                            <span class="tag">Flows</span>
+                            <span class="tag">Work Orders</span>
+                            <span class="tag">SLA Management</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-eye"></i> View Details
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-chart-line"></i> Results
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" data-category="field">
+                    <div class="project-image">
+                        <i class="fas fa-truck-moving"></i>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">Field Service Lightning</div>
+                        <h3 class="project-title">Field Operations Management</h3>
+                        <p class="project-description">
+                            Comprehensive Field Service Lightning deployment with Service Cloud integration for mobile field teams. Implemented frictionless Flow automation for job completion, parts inventory, and customer sign-off processes. Enabled offline mobile capabilities for remote technicians, resulting in 40% faster job completion in areas with limited connectivity.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Field Service</span>
+                            <span class="tag">Mobile App</span>
+                            <span class="tag">Offline Mode</span>
+                            <span class="tag">Inventory</span>
+                            <span class="tag">Flows</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-eye"></i> View Details
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-play"></i> Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card" data-category="automation">
+                    <div class="project-image">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">Flow Automation</div>
+                        <h3 class="project-title">Process Automation Suite</h3>
+                        <p class="project-description">
+                            Enterprise-wide Salesforce automation initiative using Flow Builder to eliminate manual processes. Created Record-Triggered Flows for automated lead routing, opportunity stage updates, and service case escalations. Implemented approval processes and notification systems that reduced cycle time by 50% and improved team productivity.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Flow Builder</span>
+                            <span class="tag">Automation</span>
+                            <span class="tag">Approval Process</span>
+                            <span class="tag">Notifications</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-eye"></i> View Details
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-code"></i> Technical Specs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card" data-category="service field">
+                    <div class="project-image">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">Service Cloud Integration</div>
+                        <h3 class="project-title">Unified Service Platform</h3>
+                        <p class="project-description">
+                            Unified service platform connecting Salesforce Field Service with Service Cloud for seamless operations. Built custom integrations between cases, entitlements, work orders, and service appointments. Implemented omnichannel routing and AI-powered service suggestions that improved customer satisfaction by 45%.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Integration</span>
+                            <span class="tag">Service Cloud</span>
+                            <span class="tag">Field Service</span>
+                            <span class="tag">Omnichannel</span>
+                            <span class="tag">Einstein AI</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-eye"></i> View Details
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-download"></i> Case Study
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card" data-category="analytics">
+                    <div class="project-image">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">Analytics & Reporting</div>
+                        <h3 class="project-title">Executive Dashboard Suite</h3>
+                        <p class="project-description">
+                            Executive analytics suite providing real-time visibility into field operations performance. Built custom report types and interactive dashboards tracking first-visit fix rates, technician utilization, SLA compliance, and customer NPS. Enabled data-driven decision making with automated weekly performance summaries.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Dashboards</span>
+                            <span class="tag">Reports</span>
+                            <span class="tag">Analytics</span>
+                            <span class="tag">KPI Tracking</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-eye"></i> View Details
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-chart-line"></i> Live Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <p class="section-subtitle">Academic background</p>
+            
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-info">
+                        <h3>Data Analysis</h3>
+                        <div class="school">Calbright College</div>
+                        <div class="date">January 2025 - November 2025</div>
+                        <div class="field">Professional Certificate in Data Analysis</div>
+                    </div>
+                </div>
+
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="education-info">
+                        <h3>Social Science</h3>
+                        <div class="school">University of Nigeria, Nsukka</div>
+                        <div class="date">2000 - 2005</div>
+                        <div class="field">Bachelor's Degree</div>
+                    </div>
+                </div>
+
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="education-info">
+                        <h3>Salesforce Certifications</h3>
+                        <div class="school">Trailhead by Salesforce</div>
+                        <div class="date">Ongoing</div>
+                        <div class="field">Multiple certifications and superbadges</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Let's Connect</h2>
+                    <p>
+                        I'm open to Salesforce Administrator, Consultant, and Field Service–enabled roles where I can help teams operate more efficiently, make better data-driven decisions, and scale with confidence.
+                    </p>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:winifred.udoye@gmail.com">winifred.udoye@gmail.com</a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (951) 404-6278</span>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Murrieta, California</span>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/salesforcewinnie/" target="_blank">linkedin.com/in/salesforcewinnie</a>
+                    </div>
+                </div>
+                
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/salesforcewinnie/" class="social-link" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/ekau-coder" class="social-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:winifred.udoye@gmail.com" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+            <p>&copy; 2025 Nneka Udoye. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Project filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filterValue === 'all') {
+                        card.style.display = 'block';
+                    } else {
+                        const categories = card.getAttribute('data-category');
+                        if (categories && categories.includes(filterValue)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // Contact form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I\'ll get back to you soon.');
+            this.reset();
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '60px';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
