@@ -1196,88 +1196,32 @@
                 <button class="filter-btn" data-filter="service">Service Cloud</button>
                 <button class="filter-btn" data-filter="field">Field Service</button>
                 <button class="filter-btn" data-filter="automation">Automation</button>
+                <button class="filter-btn" data-filter="ai">AI & Intelligence</button>
             </div>
 
             <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card" data-category="sales automation">
-                    <div class="project-image">
-                        <i class="fas fa-chart-pie"></i>
+                <!-- AI Project - Featured -->
+                <div class="project-card" data-category="ai automation field service">
+                    <div class="project-image" style="background: linear-gradient(135deg, #6323D8 0%, #8B5CF6 100%);">
+                        <i class="fas fa-robot"></i>
                     </div>
                     <div class="project-content">
-                        <div class="project-category">Sales Cloud & Automation</div>
-                        <h3 class="project-title">Sales Process Optimization</h3>
+                        <div class="project-category">AI-Powered Field Service</div>
+                        <h3 class="project-title">AI-Driven Field Service Optimization & Smart Case Routing</h3>
                         <p class="project-description">
-                            Greenfield implementation of Salesforce Field Service Lightning with seamless Service Cloud and Sales Cloud integration. Utilized Flow Builder for frictionless automation across work orders, scheduling, and service appointments. Achieved 40% improvement in first-visit fix rates and streamlined dispatch operations through intelligent routing.
+                            <strong>Problem:</strong> Manual scheduling, poor case prioritization, repeat service visits, slow response times — leading to missed SLAs, high operational costs, and low customer satisfaction.<br><br>
+                            <strong>Solution:</strong> Designed a Salesforce Field Service + Service Cloud + AI-powered automation solution that automates case intake and classification, assigns the right technician based on skills & availability, uses AI to predict issues and reduce repeat visits, and provides real-time insights to dispatchers and technicians.
                         </p>
                         <div class="project-tags">
+                            <span class="tag">Einstein AI</span>
+                            <span class="tag">Agentforce</span>
                             <span class="tag">Field Service</span>
                             <span class="tag">Service Cloud</span>
-                            <span class="tag">Sales Cloud</span>
                             <span class="tag">Flow Builder</span>
-                            <span class="tag">Greenfield</span>
                         </div>
                         <div class="project-links">
                             <a href="#" class="project-link">
-                                <i class="fas fa-eye"></i> View Details
-                            </a>
-                            <a href="#" class="project-link">
-                                <i class="fas fa-external-link-alt"></i> Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card" data-category="service">
-                    <div class="project-image">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-category">Service Cloud</div>
-                        <h3 class="project-title">Customer Support Platform</h3>
-                        <p class="project-description">
-                            End-to-end Salesforce Field Service implementation integrated with Service Cloud for unified case management. Configured Flow-based automation for work order creation, service appointments, and customer notifications. Reduced manual data entry by 65% and improved SLA compliance through automated entitlement and milestone tracking.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Field Service</span>
-                            <span class="tag">Service Cloud</span>
-                            <span class="tag">Flows</span>
-                            <span class="tag">Work Orders</span>
-                            <span class="tag">SLA Management</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">
-                                <i class="fas fa-eye"></i> View Details
-                            </a>
-                            <a href="#" class="project-link">
-                                <i class="fas fa-chart-line"></i> Results
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card" data-category="field">
-                    <div class="project-image">
-                        <i class="fas fa-truck-moving"></i>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-category">Field Service Lightning</div>
-                        <h3 class="project-title">Field Operations Management</h3>
-                        <p class="project-description">
-                            Comprehensive Field Service Lightning deployment with Service Cloud integration for mobile field teams. Implemented frictionless Flow automation for job completion, parts inventory, and customer sign-off processes. Enabled offline mobile capabilities for remote technicians, resulting in 40% faster job completion in areas with limited connectivity.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Field Service</span>
-                            <span class="tag">Mobile App</span>
-                            <span class="tag">Offline Mode</span>
-                            <span class="tag">Inventory</span>
-                            <span class="tag">Flows</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">
-                                <i class="fas fa-eye"></i> View Details
+                                <i class="fas fa-eye"></i> View Case Study
                             </a>
                             <a href="#" class="project-link">
                                 <i class="fas fa-play"></i> Demo
@@ -1286,87 +1230,148 @@
                     </div>
                 </div>
 
-                <!-- Project 4 -->
-                <div class="project-card" data-category="automation">
-                    <div class="project-image">
-                        <i class="fas fa-robot"></i>
+                <!-- Core Use Cases -->
+                <div class="project-card" data-category="ai automation">
+                    <div class="project-image" style="background: linear-gradient(135deg, #00A1E0 0%, #032D60 100%);">
+                        <i class="fas fa-sync"></i>
                     </div>
                     <div class="project-content">
-                        <div class="project-category">Flow Automation</div>
-                        <h3 class="project-title">Process Automation Suite</h3>
+                        <div class="project-category">Smart Automation</div>
+                        <h3 class="project-title">Use Case 1: Smart Case-to-Work Order Automation</h3>
                         <p class="project-description">
-                            Enterprise-wide Salesforce automation initiative using Flow Builder to eliminate manual processes. Created Record-Triggered Flows for automated lead routing, opportunity stage updates, and service case escalations. Implemented approval processes and notification systems that reduced cycle time by 50% and improved team productivity.
+                            <strong>Scenario:</strong> Customer submits a request → system auto-creates Work Order + Service Appointment<br><br>
+                            <strong>Solution:</strong> Record-Triggered Flow on Case that auto-creates: Work Order, Work Order Line Items, and Service Appointment.<br><br>
+                            <strong>Value:</strong> Eliminates manual dispatch, faster response time.
                         </p>
                         <div class="project-tags">
-                            <span class="tag">Flow Builder</span>
-                            <span class="tag">Automation</span>
-                            <span class="tag">Approval Process</span>
-                            <span class="tag">Notifications</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">
-                                <i class="fas fa-eye"></i> View Details
-                            </a>
-                            <a href="#" class="project-link">
-                                <i class="fas fa-code"></i> Technical Specs
-                            </a>
+                            <span class="tag">Record-Triggered Flow</span>
+                            <span class="tag">Work Order</span>
+                            <span class="tag">Service Appointment</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 5 -->
-                <div class="project-card" data-category="service field">
-                    <div class="project-image">
-                        <i class="fas fa-plug"></i>
+                <div class="project-card" data-category="ai field">
+                    <div class="project-image" style="background: linear-gradient(135deg, #1798C1 0%, #00A1E0 100%);">
+                        <i class="fas fa-users-cog"></i>
                     </div>
                     <div class="project-content">
-                        <div class="project-category">Service Cloud Integration</div>
-                        <h3 class="project-title">Unified Service Platform</h3>
+                        <div class="project-category">Resource Optimization</div>
+                        <h3 class="project-title">Use Case 2: Skill-Based Technician Assignment</h3>
                         <p class="project-description">
-                            Unified service platform connecting Salesforce Field Service with Service Cloud for seamless operations. Built custom integrations between cases, entitlements, work orders, and service appointments. Implemented omnichannel routing and AI-powered service suggestions that improved customer satisfaction by 45%.
+                            <strong>Scenario:</strong> Assign the right technician based on skill, territory, and availability.<br><br>
+                            <strong>Solution:</strong> Flow + Scheduling Policy that matches Skill Requirement → Service Resource and Territory → Service Territory Member.<br><br>
+                            <strong>Value:</strong> Right-first-time fix, reduced repeat visits.
                         </p>
                         <div class="project-tags">
-                            <span class="tag">Integration</span>
-                            <span class="tag">Service Cloud</span>
-                            <span class="tag">Field Service</span>
-                            <span class="tag">Omnichannel</span>
-                            <span class="tag">Einstein AI</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">
-                                <i class="fas fa-eye"></i> View Details
-                            </a>
-                            <a href="#" class="project-link">
-                                <i class="fas fa-download"></i> Case Study
-                            </a>
+                            <span class="tag">Scheduling Policy</span>
+                            <span class="tag">Service Resource</span>
+                            <span class="tag">Territory Management</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 6 -->
-                <div class="project-card" data-category="analytics">
-                    <div class="project-image">
-                        <i class="fas fa-chart-bar"></i>
+                <div class="project-card" data-category="ai service">
+                    <div class="project-image" style="background: linear-gradient(135deg, #6323D8 0%, #A78BFA 100%);">
+                        <i class="fas fa-brain"></i>
                     </div>
                     <div class="project-content">
-                        <div class="project-category">Analytics & Reporting</div>
-                        <h3 class="project-title">Executive Dashboard Suite</h3>
+                        <div class="project-category">AI Classification</div>
+                        <h3 class="project-title">Use Case 3: AI Case Classification & Routing</h3>
                         <p class="project-description">
-                            Executive analytics suite providing real-time visibility into field operations performance. Built custom report types and interactive dashboards tracking first-visit fix rates, technician utilization, SLA compliance, and customer NPS. Enabled data-driven decision making with automated weekly performance summaries.
+                            <strong>Scenario:</strong> Incoming cases are inconsistent and slow to triage.<br><br>
+                            <strong>Solution:</strong> Einstein Case Classification that auto-fills Priority, Type, and Queue based on case description.<br><br>
+                            <strong>Value:</strong> Faster routing, reduced manual work — AI classifies and routes cases automatically.
                         </p>
                         <div class="project-tags">
-                            <span class="tag">Dashboards</span>
-                            <span class="tag">Reports</span>
-                            <span class="tag">Analytics</span>
-                            <span class="tag">KPI Tracking</span>
+                            <span class="tag">Einstein</span>
+                            <span class="tag">Case Classification</span>
+                            <span class="tag">Auto-Routing</span>
                         </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">
-                                <i class="fas fa-eye"></i> View Details
-                            </a>
-                            <a href="#" class="project-link">
-                                <i class="fas fa-chart-line"></i> Live Dashboard
-                            </a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ai automation">
+                    <div class="project-image" style="background: linear-gradient(135deg, #059669 0%, #10B981 100%);">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">Predictive Analytics 🔥</div>
+                        <h3 class="project-title">Use Case 4: Predictive Maintenance Engine</h3>
+                        <p class="project-description">
+                            <strong>Scenario:</strong> Customers only call when things break — reactive service.<br><br>
+                            <strong>Solution:</strong> Uses historical Work Order data where AI detects patterns and automatically creates Preventive Work Orders before failures occur.<br><br>
+                            <strong>Value:</strong> Prevents downtime, increases customer trust — proactive service before failure.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Predictive Analytics</span>
+                            <span class="tag">Preventive Maintenance</span>
+                            <span class="tag">Asset Management</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ai field">
+                    <div class="project-image" style="background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">AI Assistant 🔥</div>
+                        <h3 class="project-title">Use Case 5: AI Technician Assistant</h3>
+                        <p class="project-description">
+                            <strong>Scenario:</strong> Technicians lack context in the field — slow resolutions.<br><br>
+                            <strong>Solution:</strong> AI generates job summaries, repair steps, and suggested actions for technicians in real-time.<br><br>
+                            <strong>Value:</strong> Faster resolution, better technician experience — AI provides real-time guidance.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Generative AI</span>
+                            <span class="tag">Technician Mobile</span>
+                            <span class="tag">Job Summaries</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ai service">
+                    <div class="project-image" style="background: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 100%);">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">Self-Service</div>
+                        <h3 class="project-title">Use Case 6: Self-Service Appointment Booking</h3>
+                        <p class="project-description">
+                            <strong>Scenario:</strong> Customers call for scheduling — high call volume.<br><br>
+                            <strong>Solution:</strong> Experience Cloud / Bot where customers can book, reschedule, and track technician arrival.<br><br>
+                            <strong>Value:</strong> Reduced call volume, better customer experience — AI-powered self-service.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Experience Cloud</span>
+                            <span class="tag">Service Bot</span>
+                            <span class="tag">Self-Service</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div class="project-card" data-category="ai automation" style="grid-column: 1 / -1; background: linear-gradient(135deg, #032D60 0%, #00A1E0 100%); color: white;">
+                    <div class="project-content" style="text-align: center; padding: 2rem;">
+                        <h3 class="project-title" style="color: white; font-size: 1.8rem;">📊 Impact Metrics</h3>
+                        <div style="display: flex; justify-content: center; gap: 3rem; margin-top: 1.5rem; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 2.5rem; font-weight: bold;">⬇️ 40%</div>
+                                <div>Reduction in manual dispatch work</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 2.5rem; font-weight: bold;">⬇️ 30%</div>
+                                <div>Faster case resolution</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 2.5rem; font-weight: bold;">⬆️ 25%</div>
+                                <div>Increase in first-time fix rate</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 2.5rem; font-weight: bold;">⬇️ 20%</div>
+                                <div>Repeat service visits</div>
+                            </div>
                         </div>
                     </div>
                 </div>
